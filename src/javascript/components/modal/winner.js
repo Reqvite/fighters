@@ -1,21 +1,10 @@
-import { createElement } from '../../helpers/domHelper';
-import { showModal } from './modal';
+import { createFighterImage } from '../fighterPreview';
+import showModal from './modal';
 
-export function showWinnerModal(fighter) {
-  const { source, name } = fighter;
-  const attributes = {
-    src: source,
-    title: name,
-    alt: name
-  };
+export default function showWinnerModal(fighter) {
+    const bodyElement = createFighterImage(fighter);
 
-  const bodyElement = createElement({
-    tagName: 'img',
-    className: 'modal-body',
-    attributes
-  });
+    const title = `${fighter.name.toUpperCase()} WIN!`;
 
-  const title = `${fighter.name.toUpperCase()} WIN!`;
-
-  showModal({ title, bodyElement });
+    showModal({ title, bodyElement });
 }
